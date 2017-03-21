@@ -12,35 +12,35 @@
 
 const int Obrot = 6;
 
-// Definiujemy sta³¹ o wartoœci liczby PI
+// Definiujemy staÅ‚Ä… o wartoÅ›ci liczby PI
 #define GL_PI 3.1415f
-// Wielkoœæ obrotów
+// WielkoÅ›Ä‡ obrotÃ³w
 static GLfloat xRot = 0.0f;
 static GLfloat yRot = 0.0f;
-// Wywo³ywana w celu przerysowania sceny
+// WywoÅ‚ywana w celu przerysowania sceny
 void RenderScene(void)
 {
-	GLfloat z, y, x, angle; // Zmienne przechowuj¹ce wspó³rzêdne i k¹ty
-	GLfloat sizes[2]; // Do zapisania dopuszczalnego zakresu wielkoœci
-	GLfloat step; // Zapamiêtuje obs³ugiwany przyrost rozmiaru
-	GLfloat curSize; // Zapamêituje aktualny rozmiar
-					 // Wyczyszczenie okna aktualnym kolorem czyszcz¹cym
+	GLfloat z, y, x, angle; // Zmienne przechowujÄ…ce wspÃ³Å‚rzÄ™dne i kÄ…ty
+	GLfloat sizes[2]; // Do zapisania dopuszczalnego zakresu wielkoÅ›ci
+	GLfloat step; // ZapamiÄ™tuje obsÅ‚ugiwany przyrost rozmiaru
+	GLfloat curSize; // ZapamÄ™ituje aktualny rozmiar
+					 // Wyczyszczenie okna aktualnym kolorem czyszczÄ…cym
 	glClear(GL_COLOR_BUFFER_BIT);
 	// Zapisanie stanu macierzy i wykonanie obrotu
 	glPushMatrix();
 	glRotatef(xRot, 1.0f, 0.0f, 0.0f);
 	glRotatef(yRot, 0.0f, 1.0f, 0.0f);
-	// Pobranie dopuszczalnych rozmiarów punktów
+	// Pobranie dopuszczalnych rozmiarÃ³w punktÃ³w
 	glGetFloatv(GL_POINT_SIZE_RANGE, sizes);
 	glGetFloatv(GL_POINT_SIZE_GRANULARITY, &step);
-	// Ustalenie pocz¹tkowego rozmiaru punktu
+	// Ustalenie poczÄ…tkowego rozmiaru punktu
 	curSize = sizes[0];
-	// Ustalenie pocztkowej wspó³rzêdnej z
+	// Ustalenie pocztkowej wspÃ³Å‚rzÄ™dnej z
 	x = -50.0f;
-	// Obracamy siê w kó³ko trzy razy
+	// Obracamy siÄ™ w kÃ³Å‚ko trzy razy
 	for (angle = 0.0f; angle <= Obrot*(2.0f*GL_PI); angle += 0.1f)
 	{
-		// Wyliczenie wartoœci x i y na kole
+		// Wyliczenie wartoÅ›ci x i y na kole
 		z = 50.0f*sin(angle);
 		y = 50.0f*cos(angle);
 		// Zdefiniowanie rozmiaru punktu przed utworzeniem obiektu podstawowego
@@ -49,21 +49,21 @@ void RenderScene(void)
 		glBegin(GL_POINTS);
 		glVertex3f(x, y, z);
 		glEnd();
-		// Powiêkszenie wspó³rzêdnej z i rozmiaru punktu
+		// PowiÄ™kszenie wspÃ³Å‚rzÄ™dnej z i rozmiaru punktu
 		x += 0.5f;
 		curSize += step;
 	}
-	// Odtworzenie macierzy przekszta³ceñ
+	// Odtworzenie macierzy przeksztaÅ‚ceÅ„
 	glPopMatrix();
-	// Wykonanie poleceñ rysowania
+	// Wykonanie poleceÅ„ rysowania
 	glutSwapBuffers();
 }
 // Ta funkcja wykonuje wszystkie konieczne inicjalizacje kontekstu renderowania
 void SetupRC()
 {
-	// Czarne t³o
+	// Czarne tÅ‚o
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	// Bêdziemy rysowaæ kolorem zielonym
+	// BÄ™dziemy rysowaÄ‡ kolorem zielonym
 	glColor3f(0.0f, 1.0f, 0.0f);
 }
 void SpecialKeys(int key, int x, int y)
@@ -84,7 +84,7 @@ void SpecialKeys(int key, int x, int y)
 	//	yRot = 0.0f;
 	//if (key < -1.0f)
 	//	yRot = 355.0f;
-	// Odœwie¿enie zawartoœci okna
+	// OdÅ›wieÅ¼enie zawartoÅ›ci okna
 	glutPostRedisplay();
 }
 void ChangeSize(int w, int h)
@@ -93,12 +93,12 @@ void ChangeSize(int w, int h)
 	// Zabezpieczenie przed dzieleniem przez zero
 	if (h == 0)
 		h = 1;
-	// Ustalenie wymiarów widoku na zgodnych z wymiarami okna
+	// Ustalenie wymiarÃ³w widoku na zgodnych z wymiarami okna
 	glViewport(0, 0, w, h);
 	// Ponowne ustawienie stosu macierzy rzutowania
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	// Utworzenie przestrzeni ograniczaj¹cej (lewo, prawo, dó³, góra, blisko, daleko)
+	// Utworzenie przestrzeni ograniczajÄ…cej (lewo, prawo, dÃ³Å‚, gÃ³ra, blisko, daleko)
 	if (w <= h)
 		glOrtho(-nRange, nRange, -nRange*h / w, nRange*h / w, -nRange, nRange);
 	else
