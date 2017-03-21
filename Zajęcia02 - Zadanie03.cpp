@@ -4,11 +4,11 @@
 
 const int boki = 8;
 
-// Wielkoci obrotÛw
+// Wielkoci obrot√≥w
 static GLfloat xRot = 0.0f;
 static GLfloat yRot = 0.0f;
 // Zmiana przestrzeni widocznej i okna.
-// Wywo≥ywana w momencie zmiany rozmiaru okna
+// Wywo≈Çywana w momencie zmiany rozmiaru okna
 
 void ChangeSize(int w, int h)
 {
@@ -19,11 +19,11 @@ void ChangeSize(int w, int h)
 
 		h = 1;
 
-	// ZrÛwnanie wielkoúci widoku i okna
+	// Zr√≥wnanie wielko≈õci widoku i okna
 	glViewport(0, 0, w, h);
 	fAspect = (GLfloat)w / (GLfloat)h;
 
-	// Ustalenie uk≥adu wspÛ≥rzÍdnych
+	// Ustalenie uk≈Çadu wsp√≥≈Çrzƒôdnych
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
@@ -34,7 +34,7 @@ void ChangeSize(int w, int h)
 }
 
 // Ta funkcja wykonuje wszystkie konieczne inicjalizacje kontekstu renderowania.
-// Tutaj, konfiguruje i inicjalizuje oúwietlenie sceny
+// Tutaj, konfiguruje i inicjalizuje o≈õwietlenie sceny
 void SetupRC()
 {
 	GLuint texture;
@@ -47,33 +47,33 @@ void SetupRC()
 		GL_RGBA
 	};
 
-	// Wartoci i wspÛ≥rzdne úwiat≥a
+	// Wartoci i wsp√≥≈Çrzdne ≈õwiat≈Ça
 	GLfloat whiteLight[] = { 0.05f, 0.05f, 0.05f, 1.0f };
 	GLfloat sourceLight[] = { 0.25f, 0.25f, 0.25f, 1.0f };
 	GLfloat lightPos[] = { -10.f, 5.0f, 5.0f, 1.0f };
 	glEnable(GL_DEPTH_TEST); // Usuwanie ukrytych powierzchni
 	glEnable(GL_CULL_FACE); // Nie bdziemy prowadzi oblicze wntrza samolotu
-	glFrontFace(GL_CCW); // Wielokty z nawiniciem przeciwnym do ruchu wskazÛwek zegara
-						 // W≥czenie owietlenia
+	glFrontFace(GL_CCW); // Wielokty z nawiniciem przeciwnym do ruchu wskaz√≥wek zegara
+						 // W≈Çczenie owietlenia
 	glEnable(GL_LIGHTING);
 
-	// Konfiguracja i w≥πczenie úwiat≥a numer 0
+	// Konfiguracja i w≈ÇƒÖczenie ≈õwiat≈Ça numer 0
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, whiteLight);
 	glLightfv(GL_LIGHT0, GL_AMBIENT, sourceLight);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, sourceLight);
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPos);
 	glEnable(GL_LIGHT0);
-	// W≥czenie ledzenia kolorÛw
+	// W≈Çczenie ledzenia kolor√≥w
 	glEnable(GL_COLOR_MATERIAL);
 
-	// W≥aciwoci owietlenia otoczenia i rozproszenia
+	// W≈Çaciwoci owietlenia otoczenia i rozproszenia
 	// bd ledzi wartoci podawane funkcji glColor
 	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE);
 
-	// Czarne t≥o
+	// Czarne t≈Ço
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-	// £adowanie tekstury
+	// ≈Åadowanie tekstury
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	// Generate a name for the texture
@@ -94,7 +94,7 @@ void SetupRC()
 }
 
 
-// Reakcje na klawisze strza≥ek
+// Reakcje na klawisze strza≈Çek
 void SpecialKeys(int key, int x, int y)
 {
 	if (key == GLUT_KEY_UP)
@@ -136,26 +136,26 @@ void GenerateVerticles(GLTVector3 * vertices)
 	vertices[boki][2] = 0.f;
 }
 
-// Wywo≥ywana w celu przerysowania sceny
+// Wywo≈Çywana w celu przerysowania sceny
 void RenderScene(void)
 
 {
 	GLTVector3 vNormal;
 	GLTVector3 vCorners[boki + 1];
 	GenerateVerticles(vCorners);
-	//GLTVector3 vCorners[5] = { { 0.0f, .80f, 0.0f }, // GÛra 0
-	//{ -0.5f, 0.0f, -.50f }, // Lewy ty≥ 1
-	//{ 0.5f, 0.0f, -0.50f }, // Prawy ty≥ 2
-	//{ 0.5f, 0.0f, 0.5f }, // Prawy przÛd 3
-	//{ -0.5f, 0.0f, 0.5f } }; // Lewy przÛd 4
+	//GLTVector3 vCorners[5] = { { 0.0f, .80f, 0.0f }, // G√≥ra 0
+	//{ -0.5f, 0.0f, -.50f }, // Lewy ty≈Ç 1
+	//{ 0.5f, 0.0f, -0.50f }, // Prawy ty≈Ç 2
+	//{ 0.5f, 0.0f, 0.5f }, // Prawy prz√≥d 3
+	//{ -0.5f, 0.0f, 0.5f } }; // Lewy prz√≥d 4
 
-	// Czyszczenie okna aktualnym kolorem czyszczπcym
+	// Czyszczenie okna aktualnym kolorem czyszczƒÖcym
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// Zapisanie stanu macierzy i wykonanie obrotÛw
+	// Zapisanie stanu macierzy i wykonanie obrot√≥w
 	glPushMatrix();
 
-	// CofniÍcie obiektÛw
+	// Cofniƒôcie obiekt√≥w
 	glTranslatef(0.0f, -0.25f, -4.0f);
 	glRotatef(xRot, 1.0f, 0.0f, 0.0f);
 	glRotatef(yRot, 0.0f, 1.0f, 0.0f);
@@ -193,7 +193,7 @@ void RenderScene(void)
 
 	// Odtworzenie stanu macierzy
 	glPopMatrix();
-	// Zamiana buforÛw
+	// Zamiana bufor√≥w
 	glutSwapBuffers();
 }
 
