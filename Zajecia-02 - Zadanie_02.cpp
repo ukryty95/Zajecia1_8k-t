@@ -15,10 +15,10 @@
 
 enum
 {
-	EXIT                            // wyjêcie
+	EXIT                            // wyjÄ™cie
 };
 
-// Wielkoœæ obrotów
+// WielkoÅ›Ä‡ obrotÃ³w
 const int obrot = 8;
 static GLfloat xRot = 0.0f;
 static GLfloat yRot = 0.0f;
@@ -28,37 +28,37 @@ static GLboolean iCull, iDepth, iOutline;
 // Funkcja wykonuje wszystkie konieczne inicjalizacje kontekstu renderowania
 void SetupRC()
 {
-	// Czarne t³o
+	// Czarne tÅ‚o
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	// Kolor rysuj¹cy - zielony
+	// Kolor rysujÄ…cy - zielony
 	glColor3f(0.0f, 1.0f, 0.0f);
-	// Model cieniowania kolorów - p³aski
+	// Model cieniowania kolorÃ³w - pÅ‚aski
 	glShadeModel(GL_FLAT);
-	// Wielok¹ty o nawiniêciu zgodnym z ruchem wskazówek zegara traktowane s¹
-	// jako skierowane do przodu. Takie ustawienie jest konieczne, poniewa¿
-	// korzystamy z wachlarzy trójk¹tów.
+	// WielokÄ…ty o nawiniÄ™ciu zgodnym z ruchem wskazÃ³wek zegara traktowane sÄ…
+	// jako skierowane do przodu. Takie ustawienie jest konieczne, poniewaÅ¼
+	// korzystamy z wachlarzy trÃ³jkÄ…tÃ³w.
 	glFrontFace(GL_CW);
 }
-// Wywo³ywana w celu przerysowania sceny
+// WywoÅ‚ywana w celu przerysowania sceny
 void RenderScene(void)
 {
-	GLfloat x, y, angle; // Przechowuj¹ wartoœci wspó³rzêdnych i k¹ta
+	GLfloat x, y, angle; // PrzechowujÄ… wartoÅ›ci wspÃ³Å‚rzÄ™dnych i kÄ…ta
 	GLfloat KatObrotu = GL_PI / ((float)obrot / 2);
-	int iPivot = 1; // Do oznaczania zamiennych kolorów
-					// Wyczyszczenie okna i bufora g³êbi
+	int iPivot = 1; // Do oznaczania zamiennych kolorÃ³w
+					// Wyczyszczenie okna i bufora gÅ‚Ä™bi
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	// W³¹czenie lub wy³¹czenie mechanizmu eliminowania ukrytych powierzchni
+	// WÅ‚Ä…czenie lub wyÅ‚Ä…czenie mechanizmu eliminowania ukrytych powierzchni
 	if (iCull)
 		glEnable(GL_CULL_FACE);
 	else
 		glDisable(GL_CULL_FACE);
-	// W³¹czenie lub wy³¹czenie mechanizmu sprawdzania g³êbi
+	// WÅ‚Ä…czenie lub wyÅ‚Ä…czenie mechanizmu sprawdzania gÅ‚Ä™bi
 	if (iDepth)
 		glEnable(GL_DEPTH_TEST);
 	else
 		glDisable(GL_DEPTH_TEST);
-	// Je¿eli ten znacznik bêdzie ustawiony, to wielok¹ty zwrócone
-	// ty³em do widza bêd¹ rysowane tylko w postaci szkieletu
+	// JeÅ¼eli ten znacznik bÄ™dzie ustawiony, to wielokÄ…ty zwrÃ³cone
+	// tyÅ‚em do widza bÄ™dÄ… rysowane tylko w postaci szkieletu
 	if (iOutline)
 		glPolygonMode(GL_BACK, GL_LINE);
 	else
@@ -67,18 +67,18 @@ void RenderScene(void)
 	glPushMatrix();
 	glRotatef(xRot, 1.0f, 0.0f, 0.0f);
 	glRotatef(yRot, 0.0f, 1.0f, 0.0f);
-	// Rozpoczêcie rysowania wachlarza trójk¹tów
+	// RozpoczÄ™cie rysowania wachlarza trÃ³jkÄ…tÃ³w
 	glBegin(GL_TRIANGLE_FAN);
-	// Czubek stoka jest wspólnym wierzcho³kiem wszystkich trójk¹tów z wachlarza
-	// wysuniêtym do góry w osi z. W ten sposób zamiast ko³a powstanie sto¿ek.
+	// Czubek stoka jest wspÃ³lnym wierzchoÅ‚kiem wszystkich trÃ³jkÄ…tÃ³w z wachlarza
+	// wysuniÄ™tym do gÃ³ry w osi z. W ten sposÃ³b zamiast koÅ‚a powstanie stoÅ¼ek.
 	glVertex3f(0.0f, 0.0f, 75.0f);
-	// Wykonujemy obrót w oko³o i oznaczamy w równych odstêpach wierzcho³ki
-	// tworz¹ce wachlarz trójk¹tów.
+	// Wykonujemy obrÃ³t w okoÅ‚o i oznaczamy w rÃ³wnych odstÄ™pach wierzchoÅ‚ki
+	// tworzÄ…ce wachlarz trÃ³jkÄ…tÃ³w.
 	angle = 0.f;
 	for (int i = 0; i <= obrot; i += 1)
 	//for (angle = 0.0f; angle < (2.0f*GL_PI); angle += (GL_PI / 8.0f))
 	{
-		// Wyliczenie wspó³rzêdnych x i y kolejnego wierzcho³ka
+		// Wyliczenie wspÃ³Å‚rzÄ™dnych x i y kolejnego wierzchoÅ‚ka
 		x = 50.0f*sin(angle);
 		y = 50.0f*cos(angle);
 		angle += KatObrotu;
@@ -87,22 +87,22 @@ void RenderScene(void)
 			glColor3f(0.0f, 1.0f, 0.0f);
 		else
 			glColor3f(1.0f, 0.0f, 0.0f);
-		// Inkrementacja zmiennej okrelaj¹cej rodzaj koloru
+		// Inkrementacja zmiennej okrelajÄ…cej rodzaj koloru
 		iPivot++;
-		// Definiowanie kolejnego wierzcho³ka w wachlarzu trójk¹tów
+		// Definiowanie kolejnego wierzchoÅ‚ka w wachlarzu trÃ³jkÄ…tÃ³w
 		glVertex2f(x, y);
 	}
-	// Zakoczenie rysowania trójk¹tów sto¿ka
+	// Zakoczenie rysowania trÃ³jkÄ…tÃ³w stoÅ¼ka
 	glEnd();
-	// Rozpoczêcie rysowania kolejnego wachlarza trójk¹tów
-	// zakrywaj¹cego podstaw stoka
+	// RozpoczÄ™cie rysowania kolejnego wachlarza trÃ³jkÄ…tÃ³w
+	// zakrywajÄ…cego podstaw stoka
 	glBegin(GL_TRIANGLE_FAN);
-	// œrodek wachlarza znajduje siê na pocz¹tku uk³adu wspó³rzêdnych
+	// Å›rodek wachlarza znajduje siÄ™ na poczÄ…tku ukÅ‚adu wspÃ³Å‚rzÄ™dnych
 	glVertex2f(0.0f, 0.0f);
 	for (int i = 0; i <= obrot; i += 1)
 	//for (angle = 0.0f; angle < (2.0f*GL_PI); angle += (GL_PI / 8.0f))
 	{
-		// Wyliczenie wspó³rzêdnych x i y kolejnego wierzcho³ka
+		// Wyliczenie wspÃ³Å‚rzÄ™dnych x i y kolejnego wierzchoÅ‚ka
 		x = 50.0f*sin(angle);
 		y = 50.0f*cos(angle);
 		angle += KatObrotu;
@@ -111,16 +111,16 @@ void RenderScene(void)
 			glColor3f(0.0f, 1.0f, 0.0f);
 		else
 			glColor3f(1.0f, 0.0f, 0.0f);
-		// Inkrementacja zmiennej okrelaj¹cej rodzaj koloru
+		// Inkrementacja zmiennej okrelajÄ…cej rodzaj koloru
 		iPivot++;
-		// Definiowanie kolejnego wierzcho³ka w wachlarzu trójk¹tów
+		// Definiowanie kolejnego wierzchoÅ‚ka w wachlarzu trÃ³jkÄ…tÃ³w
 		glVertex2f(x, y);
 	}
-	// Zakoczenie rysowania trójk¹tów podstawy stoka
+	// Zakoczenie rysowania trÃ³jkÄ…tÃ³w podstawy stoka
 	glEnd();
-	// Odtworzenie macierzy przekszta³ceñ
+	// Odtworzenie macierzy przeksztaÅ‚ceÅ„
 	glPopMatrix();
-	// Wys³anie poleceñ do wykonania
+	// WysÅ‚anie poleceÅ„ do wykonania
 	glutSwapBuffers();
 }
 
@@ -142,7 +142,7 @@ void SpecialKeys(int key, int x, int y)
 		yRot = 0.0f;
 	if (key < -1.0f)
 		yRot = 355.0f;
-	// Odœwie¿enie zawartoœci okna
+	// OdÅ›wieÅ¼enie zawartoÅ›ci okna
 	glutPostRedisplay();
 }
 void ChangeSize(int w, int h)
@@ -151,12 +151,12 @@ void ChangeSize(int w, int h)
 	// Zabezpieczenie przed dzieleniem przez zero
 	if (h == 0)
 		h = 1;
-	// Ustalenie wymiarów widoku na zgodnych z wymiarami okna
+	// Ustalenie wymiarÃ³w widoku na zgodnych z wymiarami okna
 	glViewport(0, 0, w, h);
 	// Ponowne ustawienie stosu macierzy rzutowania
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	// Utworzenie przestrzeni ograniczaj¹cej (lewo, prawo, dó³, góra, blisko, daleko)
+	// Utworzenie przestrzeni ograniczajÄ…cej (lewo, prawo, dÃ³Å‚, gÃ³ra, blisko, daleko)
 	if (w <= h)
 		glOrtho(-nRange, nRange, -nRange*h / w, nRange*h / w, -nRange, nRange);
 	else
@@ -198,7 +198,7 @@ void Menu(int value)
 		RenderScene();
 		break;
 
-		// wyjêcie
+		// wyjÄ™cie
 	case EXIT:
 		exit(0);
 	}
@@ -221,7 +221,7 @@ int main(int argc, char* argv[])
 	glutAddMenuEntry("Polygon mode FILL", GL_FILL);
 	glutAddMenuEntry("Wyjecie", EXIT);
 
-	// okreœlenie przycisku myszki obs³uguj¹cego menu podrêczne
+	// okreÅ›lenie przycisku myszki obsÅ‚ugujÄ…cego menu podrÄ™czne
 	glutAttachMenu(GLUT_RIGHT_BUTTON);
 
 	glutMainLoop();
